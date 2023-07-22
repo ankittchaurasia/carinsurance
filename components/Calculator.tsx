@@ -54,7 +54,7 @@ export default function Calculator() {
         stateVariables.forEach((variable:any) =>{
             weight_sum = weight_sum + flattened[variable]
         });
-        const BasePrice = 1500000;
+        const BasePrice = 25000;
         const percentage = 0.1;
         const price = BasePrice * percentage * weight_sum
         setDisplay(price.toFixed(2))
