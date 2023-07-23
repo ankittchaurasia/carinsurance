@@ -132,9 +132,11 @@ export default function HeaderResponsive({ links }: HeaderResponsiveProps) {
         <Title size={17} className={classes.title}> Car Insurance Premium Calculator</Title>
         </div>
         <Group spacing={0} position="right" noWrap>
-          <ActionIcon size="lg">
-            <BrandGithub size="1.1rem" strokeWidth={1.5} />
-          </ActionIcon>
+          <a href='https://github.com/ankittchaurasia/carinsurance' target='_blank'>
+            <ActionIcon size="lg">
+              <BrandGithub size="1.1rem" strokeWidth={1.5} />
+            </ActionIcon>
+          </a>
           <DarkTheme />
         </Group>
 
