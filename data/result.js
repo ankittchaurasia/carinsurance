@@ -93,6 +93,66 @@ export const stateData = [
     {value:"Ohio", label:"Ohio", image:"/flags/Ohio.png"},
 ]
 
+export const car_models = {
+    "Acura": ["TL", "RSX", "MDX"],
+    "Audi": ["A5", "A3"],
+    "BMW": ["3 Series", "X5", "M5", "X6"],
+    "Chevrolet": ["Malibu", "Silverado", "Tahoe"],
+    "Dodge": ["Neon", "RAM"],
+    "Ford": ["Escape", "F150", "Fusion"],
+    "Honda": ["Accord", "Civic", "CRV"],
+    "Jeep": ["Wrangler", "Grand Cherokee"],
+    "Mercedes": ["E400", "ML350", "C300"],
+    "Nissan": ["Maxima", "Pathfinder", "Ultima"],
+    "Saab": ["93", "95", "92x"],
+    "Subaru": ["Impreza", "Legacy", "Forrestor"],
+    "Toyota": ["Camry", "Highlander", "Corolla"],
+    "Volkswagen": ["Jetta", "Passat"]
+}
+
+export const basePricefromModel = {
+    "MDX": 44500,
+    "RSX": 22000,
+    "TL": 23483,
+    "A3": 34700,
+    "A5": 42000,
+    "3 Series": 42690,
+    "M5": 89575,
+    "X5": 49970,
+    "X6": 47799,
+    "Malibu": 17080,
+    "Silverado": 19863,
+    "Tahoe": 44000,
+    "Neon": 12840,
+    "RAM": 22000,
+    "Escape": 19995,
+    "F150": 23290,
+    "Fusion": 21270,
+    "Accord": 20795,
+    "Civic": 20010,
+    "CRV": 25250,
+    "Grand Cherokee": 44640,
+    "Wrangler": 20795,
+    "C300": 44850,
+    "E400": 50000,
+    "ML350": 37950,
+    "Maxima": 35120,
+    "Pathfinder": 28000,
+    "Ultima": 25490,
+    "92x": 23000,
+    "93": 34340,
+    "95": 31000,
+    "Forrestor": 21390,
+    "Impreza": 19220,
+    "Legacy": 22790,
+    "Camry": 22000,
+    "Corolla": 14220,
+    "Highlander": 14000,
+    "Jetta": 19500,
+    "Passat": 21280,
+}
+
+
 export const flags = {
     "9ff": {
         "name": "9ff",

@@ -1,18 +1,8 @@
 import { CarCrash, BrandGithub, BrandLinkedin } from 'tabler-icons-react';
 import { useState } from 'react';
-import {
-  createStyles,
-  Header,
-  Container,
-  Group,
-  Burger,
-  Paper,
-  Transition,
-  rem,
-  Title,
-  ActionIcon
-} from '@mantine/core';
+import { createStyles, Header, Container, Group, Burger, Paper, Transition, rem, Title, ActionIcon, useMantineColorScheme, Center } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import { Sun, MoonStars } from 'tabler-icons-react'
 
 const HEADER_HEIGHT = rem(60);
 
@@ -95,6 +85,22 @@ interface HeaderResponsiveProps {
   links: { link: string; label: string }[];
 }
 
+function DarkTheme(){
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+  const dark = colorScheme === 'dark';
+
+  return (
+    <ActionIcon
+      variant="outline"
+      color={dark ? 'yellow' : 'blue'}
+      onClick={() => toggleColorScheme()}
+      title="Toggle color scheme"
+    >
+      {dark ? <Sun size="1.1rem" /> : <MoonStars size="1.1rem" />}
+    </ActionIcon>
+  );
+}
+
 export default function HeaderResponsive({ links }: HeaderResponsiveProps) {
   const [opened, { toggle, close }] = useDisclosure(false);
   const [active, setActive] = useState(links[0].link);
@@ -116,7 +122,7 @@ export default function HeaderResponsive({ links }: HeaderResponsiveProps) {
   ));
 
   return (
-    <Header height={HEADER_HEIGHT} mb={50} className={classes.root}>
+    <Header height={HEADER_HEIGHT} mb={30} className={classes.root}>
       <Container className={classes.header}>
       <div style={{display:'flex', placeItems:'center'}}>
         <ActionIcon size="xl">
@@ -136,6 +142,7 @@ export default function HeaderResponsive({ links }: HeaderResponsiveProps) {
 
         <Group spacing={5} className={classes.links}>
           {items}
+          <DarkTheme />
         </Group>
 
         <Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" />
@@ -144,10 +151,12 @@ export default function HeaderResponsive({ links }: HeaderResponsiveProps) {
           {(styles) => (
             <Paper className={classes.dropdown} withBorder style={styles}>
               {items}
+              <div style={{padding:"10px"}} ><DarkTheme /></div>
             </Paper>
           )}
         </Transition>
       </Container>
     </Header>
   );
+
 }

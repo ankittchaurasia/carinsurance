@@ -10,12 +10,12 @@ export default function Home() {
   return (
     <>
       <Header links={links} />
-      <Container mb={20}>
-      <div style={{display:'flex', alignItems:'center'}}>
+      <Container mb={10} size="lg">
+      <div style={{display:'flex', alignItems:'center', justifyContent:'center'}}>
       <ActionIcon size="xl">
             <CarCrash size="2rem" strokeWidth={1.5} /> |
         </ActionIcon>
-        <Title align="center" order={1} mt={20} mb={20} size={20}> Car Insurance Premium Calculator</Title>
+        <Title align="center" order={1} my={25} size={20}> Car Insurance Premium Calculator</Title>
         </div>
             <Calculator />
       </Container>
