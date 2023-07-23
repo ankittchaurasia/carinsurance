@@ -1,4 +1,1 @@
-components/* linguist-language=TypeScript
-pages/app.tsx linguist-language=TypeScript
-pages/_document.tsx linguist-language=TypeScript
-pages/_app.tsx linguist-language=TypeScript
+*.tsx linguist-language=TypeScript
