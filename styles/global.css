@@ -1,0 +1,33 @@
+@media print {
+    body {
+      visibility: hidden;
+      position: fixed;
+    }
+    #emitext, #estimationtext{
+      display: none !important;
+    }
+    .mantine-Alert-root::before {
+      content: "Car Premium Estimation..";
+      font-weight: bold;
+      color: teal;
+      font-size: '1.1rem'
+    }
+    .mantine-Alert-root{
+      visibility: visible;
+      position: absolute !important;
+      top: 2%;
+      left: 50%;
+      transform: translateX(-50%);
+      width:100%;
+      height: 110%;
+      color: gray !important;
+    }
+    .mantine-Alert-root div{
+      color: black !important;
+    }
+
+  }
+  @page:right{
+    size: A5; /* or 'letter', 'legal', etc. */
+    margin: 0 auto;
+  }

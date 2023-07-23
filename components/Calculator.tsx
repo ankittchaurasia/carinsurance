@@ -85,14 +85,16 @@ export default function Calculator() {
                 <Select error={error[2]} value={occupation} onChange={setOccupation} label='Occupation' placeholder='Your Occupation' data={ Object.keys((data as any)['Occupation']) }  />
                 <Select error={error[3]} value={state} onChange={setState} label="State" placeholder="Select your State" data={stateData} itemComponent={itemComp}  />
             </Card.Section>
-
             <Card.Section mt={40}>
                 <Text align="center" size="lg" fw="bold">Car Details</Text>
                 <Select searchable error={error[4]} value={carMake} onChange={setCarMake} label="Car Make" placeholder="Select your Car Company" data={CarMakeData} itemComponent={itemComp} />
                 <Select error={error[5]} value={carModel} onChange={setCarModel} searchable label="Car Model" placeholder="Select your Car Model" data={carMake ? (car_models as any)[carMake] : []} />
             </Card.Section>
             <Card.Section mt={40}>
-                <div style={{textAlign:'center'}}> <Button onClick={Calculate}>Calculate</Button> </div>
+                <div style={{textAlign:'center'}}>
+                     <Button onClick={Calculate}>Calculate</Button>
+                    {display && <Button variant='outline' mx="md" onClick={() => { if (typeof window !== "undefined") window.print()}}>Print</Button> }
+                 </div>
             </Card.Section>
         </Card>
         <Alert color={display ? 'violet':'red'} styles={{wrapper:{display:"block"}}}>

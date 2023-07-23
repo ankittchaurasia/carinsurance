@@ -52,7 +52,7 @@ export default function BreakDown({display, state}:any){
 
     return(
     <>
-        <Text style={{display:'flex', alignItems:"center"}} fw="bold" c="violet"><CircleCheck /> <span style={{marginLeft:"10px"}}>Estimations</span></Text>
+        <Text id="estimationtext" style={{display:'flex', alignItems:"center"}} fw="bold" c="violet"><CircleCheck /> <span style={{marginLeft:"10px"}}>Estimations</span></Text>
         <Text>Your Estimated Car Insurance Premium Price is <span style={{fontWeight:"bold", fontSize:"1rem"}}>${display[0]}</span></Text> 
         <Text mt={20} fz="xl" fw={700}  td="underline">BreakDown</Text>
         <Table mt={20}>
@@ -108,7 +108,7 @@ export default function BreakDown({display, state}:any){
             </tr>
         </Table>
         <Divider my={10} />
-        <Text c="dimmed">Want to Pay in Installments? <Button onClick={open} variant='outline' color="teal" compact>Check Here</Button></Text> 
+        <Text id="emitext" c="dimmed">Want to Pay in Installments? <Button onClick={open} variant='outline' color="teal" compact>Check Here</Button></Text> 
         <Modal size="md" opened={opened} onClose={close} centered title="Amortization Table (6% interest rate)" styles={{title:{fontWeight:"bold"}}}>
             <AmortizationTable amt={Number(display[0])} interest={6} installments={12} />
         </Modal> 

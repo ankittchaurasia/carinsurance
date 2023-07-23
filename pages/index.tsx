@@ -1,8 +1,7 @@
 import Header from '@/components/Header'
 import Calculator from '@/components/Calculator'
-import { SimpleGrid, Container, Image, Card, Title, ActionIcon } from '@mantine/core'
+import { Container, Title, ActionIcon } from '@mantine/core'
 import { CarCrash } from 'tabler-icons-react';
-
 
 export default function Home() {
   const links = [{ link: '/', label: 'Home' }, { link: '#', label: 'About Project' },{ link:'#', label: 'Team' }]
