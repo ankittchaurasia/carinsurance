@@ -133,16 +133,13 @@ export default function HeaderResponsive({ links }: HeaderResponsiveProps) {
         </div>
         <Group spacing={0} position="right" noWrap>
           <ActionIcon size="lg">
-            <BrandLinkedin size="1.1rem" strokeWidth={1.5} />
-          </ActionIcon>
-          <ActionIcon size="lg">
             <BrandGithub size="1.1rem" strokeWidth={1.5} />
           </ActionIcon>
+          <DarkTheme />
         </Group>
 
         <Group spacing={5} className={classes.links}>
           {items}
-          <DarkTheme />
         </Group>
 
         <Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" />
@@ -151,7 +148,6 @@ export default function HeaderResponsive({ links }: HeaderResponsiveProps) {
           {(styles) => (
             <Paper className={classes.dropdown} withBorder style={styles}>
               {items}
-              <div style={{padding:"10px"}} ><DarkTheme /></div>
             </Paper>
           )}
         </Transition>
