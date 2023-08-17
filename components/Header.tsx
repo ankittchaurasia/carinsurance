@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { createStyles, Header, Container, Group, Burger, Paper, Transition, rem, Title, ActionIcon, useMantineColorScheme, Center } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Sun, MoonStars } from 'tabler-icons-react'
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const HEADER_HEIGHT = rem(60);
 
@@ -103,22 +105,23 @@ function DarkTheme(){
 
 export default function HeaderResponsive({ links }: HeaderResponsiveProps) {
   const [opened, { toggle, close }] = useDisclosure(false);
-  const [active, setActive] = useState(links[0].link);
+  const router = useRouter();
+  const [active, setActive] = useState(router.pathname);
   const { classes, cx } = useStyles();
 
   const items = links.map((link) => (
-    <a
+    <Link
       key={link.label}
       href={link.link}
       className={cx(classes.link, { [classes.linkActive]: active === link.link })}
       onClick={(event) => {
         event.preventDefault();
-        setActive(link.link);
+        router.push(link.link);
         close();
       }}
     >
       {link.label}
-    </a>
+    </Link>
   ));
 
   return (

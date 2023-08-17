@@ -1,8 +1,8 @@
 import { AppProps } from 'next/app';
-import Head from 'next/head';
 import { MantineProvider, ColorSchemeProvider, ColorScheme } from '@mantine/core';
 import { useState } from 'react';
 import '../styles/global.css';
+import NextNProgress from 'nextjs-progressbar';
 
 export default function App(props: AppProps) {
   const [colorScheme, setColorScheme] = useState<ColorScheme>('light');
@@ -12,11 +12,7 @@ export default function App(props: AppProps) {
 
   return (
     <>
-      <Head>
-        <title>Car Insurance Premium Calculator</title>
-        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-      </Head>
-
+     <NextNProgress />
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
       <MantineProvider
         withGlobalStyles
