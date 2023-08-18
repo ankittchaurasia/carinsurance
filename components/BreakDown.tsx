@@ -64,7 +64,8 @@ export default function BreakDown({display, state}:any){
             </tr>
             <tr>
                 <td>Add ons</td>
-                <td> - </td>
+                { (display[2]['checkedncb']) && <td> NCB: ${display[2]['addon']['ncb'].toFixed(1)}</td> }
+                { (display[2]['checkedrsa']) && <td> RSA: ${display[2]['addon']['rsa'].toFixed(1)}</td> }
             </tr>
             </tbody>
         </Table>

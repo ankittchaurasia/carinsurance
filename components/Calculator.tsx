@@ -1,8 +1,10 @@
-import { Group, Avatar, Text, Select, Card, SimpleGrid, Alert, Button } from '@mantine/core';
+import { Group, Avatar, Text, Select, Card, SimpleGrid, Alert, Button, Checkbox, Dialog, Center } from '@mantine/core';
 import { stateData, result as data, flags, car_models, basePricefromModel } from '@/data/result';
 import { useState,useEffect, forwardRef } from 'react'
 import { AlertCircle } from 'tabler-icons-react';
 import BreakDownComp from './BreakDown';
+import ModalTC from './Modal';
+import { useDisclosure } from '@mantine/hooks';
 
 const CarMakeData =  Object.keys(data['Car Company']).map((item:string)=>{
     const itemlower = item?.toLowerCase();
@@ -31,8 +33,7 @@ function BreakDown(premium:number, state:string | null){
     const StateTaxAmount = premium * (StateTax as any)[state || 'Ohio'] / 100;
     const bodilyInjury = premium * 0.10;
     const propertyDamage = premium * 0.08;
-    const OD = premium - (StateTaxAmount + bodilyInjury + propertyDamage);
-
+    const OD = premium - ( bodilyInjury + propertyDamage);
     return { StateTaxAmount, bodilyInjury, propertyDamage, OD }
     
 }
@@ -49,6 +50,11 @@ export default function Calculator() {
     const [carMake, setCarMake] = useState<string | null>(null);
     const [carModel, setCarModel] = useState<string | null>(null);
     const [display, setDisplay] = useState<any>(null);
+    
+    //addon
+    const [checkedncb, setNcbChecked] = useState<boolean>(false);
+    const [checkedrsa, setRsaChecked] = useState<boolean>(false);
+    const [opened, { open, close }] = useDisclosure(false);
 
     useEffect(()=> setCarModel(null) ,[carMake])
     
@@ -70,9 +76,19 @@ export default function Calculator() {
         });
         const BasePrice = (basePricefromModel as any)[carModel || '93']; //as 93 represent avg so fallbacked it
         const percentage = 0.05;
-        const price = BasePrice * percentage * (1 + weight_sum)
+        let price = BasePrice * percentage * (1 + weight_sum)
+        let bd= BreakDown(price, state)
+        const addon = {
+            ncb: price * 0.03,
+            rsa: 100
+        }
+        
+        price = price + bd.StateTaxAmount;
+        if(checkedncb) price = price + addon.ncb;
+        if(checkedrsa) price = price + addon.rsa;
+
         console.log(BasePrice, percentage, weight_sum)
-        setDisplay([price.toFixed(2), BreakDown(price, state)])
+        setDisplay([(price).toFixed(2), bd, {checkedncb, checkedrsa, addon}]);
     }
 
     return(
@@ -91,6 +107,17 @@ export default function Calculator() {
                 <Select error={error[5]} value={carModel} onChange={setCarModel} searchable label="Car Model" placeholder="Select your Car Model" data={carMake ? (car_models as any)[carMake] : []} />
             </Card.Section>
             <Card.Section mt={40}>
+                <Text align="center" size="lg" fw="bold">Add Ons </Text>
+                <Text style={{cursor:"pointer"}} mb="sm" align='center' fz="xs" c="blue" onClick={open}>Check Terms and Condition</Text>
+                <Center>
+                    <div>
+                    <Checkbox checked={checkedncb} onChange={(event) => setNcbChecked(event.currentTarget.checked)} label= "Opt for No Claim Bonus Addon" /> 
+                    <Checkbox my="xs" checked={checkedrsa} onChange={(event) => setRsaChecked(event.currentTarget.checked)} label="Opt for Road Side Assistant Addon" />
+                    </div>
+                </Center>
+
+            </Card.Section>
+            <Card.Section mt={40}>
                 <div style={{textAlign:'center'}}>
                      <Button onClick={Calculate}>Calculate</Button>
                     {display && <Button variant='outline' mx="md" onClick={() => { if (typeof window !== "undefined") window.print()}}>Print</Button> }
@@ -104,6 +131,7 @@ export default function Calculator() {
             </>
             }
         </Alert>
+        <ModalTC open={opened} close={close} />
     </SimpleGrid>
     )
 }
